@@ -1,0 +1,9 @@
+# Installation #
+
+1.  Compile the source file
+2.  Package it as a JAR file
+3.  Add the following parameter to the invocation of your Java program
+    and replace the path to your created JAR file:
+
+    -Xbootclasspath/p:/path/to/hack.jar
+
