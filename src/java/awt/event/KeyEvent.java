@@ -857,6 +857,9 @@ public class KeyEvent extends InputEvent {
 		neo2HackMap.put(65463, new KeyCodeChar(VK_7, '7', true)); // 7
 		neo2HackMap.put(65464, new KeyCodeChar(VK_8, '8', true)); // 8
 		neo2HackMap.put(65465, new KeyCodeChar(VK_9, '9', true)); // 9
+		neo2HackMap.put(65451, new KeyCodeChar(VK_PLUS, '+', true)); // +
+		neo2HackMap.put(65452, new KeyCodeChar(VK_COMMA, ',', true)); // ,
+		neo2HackMap.put(65465, new KeyCodeChar(VK_COLON, ':', true)); // :
 	}
 
 	/**
@@ -987,8 +990,8 @@ public class KeyEvent extends InputEvent {
 	public KeyEvent(Component source, int id, long when, int modifiers,
 			int keyCode, char keyChar, int keyLocation) {
 		super(source, id, when, modifiers);
-		/*System.out.println("Event: (" + keyCode + "," + keyChar + ","
-				+ (int) keyChar + "," + modifiers + ")");*/
+		System.out.println("Event: (" + keyCode + "," + keyChar + ","
+				+ (int) keyChar + "," + modifiers + ")");
 
 		boolean neo2HackApplied = false;
 
