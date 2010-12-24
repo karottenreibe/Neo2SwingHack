@@ -135,7 +135,6 @@ public class KeyEvent extends InputEvent {
 		neo2HackMap.put(65364, new KeyCodeChar(40, 65535)); // down
 		neo2HackMap.put(65293, new KeyCodeChar(10, 10)); // enter
 		neo2HackMap.put(65289, new KeyCodeChar(9, 9)); // tab
-		neo2HackMap.put(65385, new KeyCodeChar(27, 27)); // escape
 		neo2HackMap.put(65367, new KeyCodeChar(35, 65535)); // end
 		neo2HackMap.put(65368, new KeyCodeChar(36, 65535)); // home
 		neo2HackMap.put(65345, new KeyCodeChar(33, 65535)); // pg down
@@ -989,9 +988,9 @@ public class KeyEvent extends InputEvent {
 			}
 		}
 
-		// delete -- needs a special hack since its keyChar is the
-		// same as the one for all the normal level 1 keys
 		if (keyChar == 65535) {
+			// delete -- needs a special hack since its keyChar is the
+			// same as the one for all the normal level 1 keys
 			if (keyCode == 67) {
 				keyCode = 127;
 				keyChar = 127;
@@ -1000,6 +999,11 @@ public class KeyEvent extends InputEvent {
 				keyChar = 127;
 				neo2HackApplied = true;
 			}
+		} else if (keyChar == 65385) {
+			// escape -- needs special handling since its keyCode is always 0
+			keyCode = 27;
+			keyChar = 27;
+			neo2HackApplied = true;
 		}
 
 		if (!neo2HackApplied && id == KEY_TYPED) {
