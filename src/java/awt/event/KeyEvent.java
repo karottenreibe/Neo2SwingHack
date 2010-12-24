@@ -124,23 +124,6 @@ import java.util.HashMap;
  */
 public class KeyEvent extends InputEvent {
 
-	static HashMap<Integer, KeyCodeChar> neo2HackMap = new HashMap<Integer, KeyCodeChar>();
-
-	// Neo2 hack
-	static {
-		neo2HackMap.put(65288, new KeyCodeChar(8, 8)); // backspace
-		neo2HackMap.put(65361, new KeyCodeChar(37, 65535)); // left
-		neo2HackMap.put(65362, new KeyCodeChar(38, 65535)); // up
-		neo2HackMap.put(65363, new KeyCodeChar(39, 65535)); // right
-		neo2HackMap.put(65364, new KeyCodeChar(40, 65535)); // down
-		neo2HackMap.put(65293, new KeyCodeChar(10, 10)); // enter
-		neo2HackMap.put(65289, new KeyCodeChar(9, 9)); // tab
-		neo2HackMap.put(65367, new KeyCodeChar(35, 65535)); // end
-		neo2HackMap.put(65368, new KeyCodeChar(36, 65535)); // home
-		neo2HackMap.put(65345, new KeyCodeChar(33, 65535)); // pg down
-		neo2HackMap.put(65346, new KeyCodeChar(34, 65535)); // pg up
-		neo2HackMap.put(65379, new KeyCodeChar(155, 65535)); // insert
-	}
 
 	/**
 	 * Stores the state of native event dispatching system
@@ -848,6 +831,23 @@ public class KeyEvent extends InputEvent {
 	 */
 	public static final int KEY_LOCATION_NUMPAD   = 4;
 
+	// Neo2 hack
+	static HashMap<Integer, KeyCodeChar> neo2HackMap = new HashMap<Integer, KeyCodeChar>();
+	static {
+		neo2HackMap.put(65288, new KeyCodeChar(VK_BACK_SPACE, '\b')); // backspace
+		neo2HackMap.put(65361, new KeyCodeChar(VK_LEFT, CHAR_UNDEFINED)); // left
+		neo2HackMap.put(65362, new KeyCodeChar(VK_UP, CHAR_UNDEFINED)); // up
+		neo2HackMap.put(65363, new KeyCodeChar(VK_RIGHT, CHAR_UNDEFINED)); // right
+		neo2HackMap.put(65364, new KeyCodeChar(VK_DOWN, CHAR_UNDEFINED)); // down
+		neo2HackMap.put(65293, new KeyCodeChar(VK_ENTER, '\n')); // enter
+		neo2HackMap.put(65289, new KeyCodeChar(VK_TAB, '\t')); // tab
+		neo2HackMap.put(65367, new KeyCodeChar(VK_END, CHAR_UNDEFINED)); // end
+		neo2HackMap.put(65368, new KeyCodeChar(VK_HOME, CHAR_UNDEFINED)); // home
+		neo2HackMap.put(65345, new KeyCodeChar(VK_PAGE_UP, CHAR_UNDEFINED)); // pg up
+		neo2HackMap.put(65346, new KeyCodeChar(VK_PAGE_DOWN, CHAR_UNDEFINED)); // pg down
+		neo2HackMap.put(65379, new KeyCodeChar(VK_INSERT, CHAR_UNDEFINED)); // insert
+	}
+
 	/**
 	 * The unique value assigned to each of the keys on the
 	 * keyboard.  There is a common set of key codes that
@@ -989,11 +989,10 @@ public class KeyEvent extends InputEvent {
 		}
 
 		if (keyChar == 65535) {
-			// delete -- needs a special hack since its keyChar is the
-			// same as the one for all the normal level 1 keys
+			// delete -- needs a special hack since its keyChar is CHAR_UNDEFINED
 			if (keyCode == 67) {
-				keyCode = 127;
-				keyChar = 127;
+				keyCode = VK_DELETE;
+				keyChar = VK_DELETE;
 				neo2HackApplied = true;
 			} else if (keyCode == 0) {
 				keyChar = 127;
@@ -1001,8 +1000,8 @@ public class KeyEvent extends InputEvent {
 			}
 		} else if (keyChar == 65385) {
 			// escape -- needs special handling since its keyCode is always 0
-			keyCode = 27;
-			keyChar = 27;
+			keyCode = VK_ESCAPE;
+			keyChar = VK_ESCAPE;
 			neo2HackApplied = true;
 		}
 
