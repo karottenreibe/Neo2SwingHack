@@ -844,6 +844,9 @@ public class KeyEvent extends InputEvent {
 		neo2HackMap.put(65368, new KeyCodeChar(VK_HOME, CHAR_UNDEFINED)); // home
 		neo2HackMap.put(65345, new KeyCodeChar(VK_PAGE_UP, CHAR_UNDEFINED)); // pg up
 		neo2HackMap.put(65346, new KeyCodeChar(VK_PAGE_DOWN, CHAR_UNDEFINED)); // pg down
+		neo2HackMap.put(65289, new KeyCodeChar(VK_TAB, '\t', true)); // tab
+		neo2HackMap.put(65379, new KeyCodeChar(VK_INSERT, CHAR_UNDEFINED, true)); // insert
+		neo2HackMap.put(65385, new KeyCodeChar(VK_ESCAPE, VK_ESCAPE, true)); //escape
 	}
 
 	/**
@@ -957,12 +960,18 @@ public class KeyEvent extends InputEvent {
 
 	private static class KeyCodeChar {
 		public KeyCodeChar(int keyCode, int keyChar) {
+			this(keyCode, keyChar, false);
+		}
+
+		public KeyCodeChar(int keyCode, int keyChar, boolean isZeroKey) {
 			this.keyCode = keyCode;
 			this.keyChar = (char) keyChar;
+			this.isZeroKey = isZeroKey;
 		}
 
 		int keyCode;
 		char keyChar;
+		boolean isZeroKey;
 	}
 
 	public KeyEvent(Component source, int id, long when, int modifiers,
@@ -976,7 +985,7 @@ public class KeyEvent extends InputEvent {
 		for (Integer key : neo2HackMap.keySet()) {
 			if (key == keyChar) {
 				KeyCodeChar kcc = neo2HackMap.get(key);
-				if (keyCode != 0) {
+				if (keyCode != 0 || kcc.isZeroKey) {
 					keyCode = kcc.keyCode;
 				}
 				keyChar = kcc.keyChar;
@@ -996,21 +1005,6 @@ public class KeyEvent extends InputEvent {
 				keyChar = 127;
 				neo2HackApplied = true;
 			}
-		} else if (keyChar == 65385) {
-			// escape -- needs special handling since its keyCode is always 0
-			keyCode = VK_ESCAPE;
-			keyChar = VK_ESCAPE;
-			neo2HackApplied = true;
-		} else if (keyChar == 65289) {
-			// tab -- needs special handling since its keyCode is always 0
-			keyCode = VK_TAB;
-			keyChar = '\t';
-			neo2HackApplied = true;
-		} else if (keyChar == 65379) {
-			// insert -- needs special handling since its keyCode is always 0
-			keyCode = VK_INSERT;
-			keyChar = CHAR_UNDEFINED;
-			neo2HackApplied = true;
 		}
 
 		if (!neo2HackApplied && id == KEY_TYPED) {
