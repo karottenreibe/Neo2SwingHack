@@ -846,7 +846,17 @@ public class KeyEvent extends InputEvent {
 		neo2HackMap.put(65346, new KeyCodeChar(VK_PAGE_DOWN, CHAR_UNDEFINED)); // pg down
 		neo2HackMap.put(65289, new KeyCodeChar(VK_TAB, '\t', true)); // tab
 		neo2HackMap.put(65379, new KeyCodeChar(VK_INSERT, CHAR_UNDEFINED, true)); // insert
-		neo2HackMap.put(65385, new KeyCodeChar(VK_ESCAPE, VK_ESCAPE, true)); //escape
+		neo2HackMap.put(65385, new KeyCodeChar(VK_ESCAPE, VK_ESCAPE, true)); // escape
+		neo2HackMap.put(65456, new KeyCodeChar(VK_0, '0', true)); // 0
+		neo2HackMap.put(65457, new KeyCodeChar(VK_1, '1', true)); // 1
+		neo2HackMap.put(65458, new KeyCodeChar(VK_2, '2', true)); // 2
+		neo2HackMap.put(65459, new KeyCodeChar(VK_3, '3', true)); // 3
+		neo2HackMap.put(65460, new KeyCodeChar(VK_4, '4', true)); // 4
+		neo2HackMap.put(65461, new KeyCodeChar(VK_5, '5', true)); // 5
+		neo2HackMap.put(65462, new KeyCodeChar(VK_6, '6', true)); // 6
+		neo2HackMap.put(65463, new KeyCodeChar(VK_7, '7', true)); // 7
+		neo2HackMap.put(65464, new KeyCodeChar(VK_8, '8', true)); // 8
+		neo2HackMap.put(65465, new KeyCodeChar(VK_9, '9', true)); // 9
 	}
 
 	/**
