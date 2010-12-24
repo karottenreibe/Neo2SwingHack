@@ -840,12 +840,10 @@ public class KeyEvent extends InputEvent {
 		neo2HackMap.put(65363, new KeyCodeChar(VK_RIGHT, CHAR_UNDEFINED)); // right
 		neo2HackMap.put(65364, new KeyCodeChar(VK_DOWN, CHAR_UNDEFINED)); // down
 		neo2HackMap.put(65293, new KeyCodeChar(VK_ENTER, '\n')); // enter
-		neo2HackMap.put(65289, new KeyCodeChar(VK_TAB, '\t')); // tab
 		neo2HackMap.put(65367, new KeyCodeChar(VK_END, CHAR_UNDEFINED)); // end
 		neo2HackMap.put(65368, new KeyCodeChar(VK_HOME, CHAR_UNDEFINED)); // home
 		neo2HackMap.put(65345, new KeyCodeChar(VK_PAGE_UP, CHAR_UNDEFINED)); // pg up
 		neo2HackMap.put(65346, new KeyCodeChar(VK_PAGE_DOWN, CHAR_UNDEFINED)); // pg down
-		neo2HackMap.put(65379, new KeyCodeChar(VK_INSERT, CHAR_UNDEFINED)); // insert
 	}
 
 	/**
@@ -1002,6 +1000,16 @@ public class KeyEvent extends InputEvent {
 			// escape -- needs special handling since its keyCode is always 0
 			keyCode = VK_ESCAPE;
 			keyChar = VK_ESCAPE;
+			neo2HackApplied = true;
+		} else if (keyChar == 65289) {
+			// tab -- needs special handling since its keyCode is always 0
+			keyCode = VK_TAB;
+			keyChar = '\t';
+			neo2HackApplied = true;
+		} else if (keyChar == 65379) {
+			// insert -- needs special handling since its keyCode is always 0
+			keyCode = VK_INSERT;
+			keyChar = CHAR_UNDEFINED;
 			neo2HackApplied = true;
 		}
 
